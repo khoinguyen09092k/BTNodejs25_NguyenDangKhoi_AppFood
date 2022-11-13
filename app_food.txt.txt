@@ -1,0 +1,224 @@
+# Tạo bảng food_type 
+
+CREATE TABLE customers (
+
+type_id INT PRIMARY KEY AUTO_INCREMENT,
+type_name VARCHAR(255),
+
+)
+
+INSERT INTO food_type VALUES
+(1,"Đồ Uống"),
+(2,"Các Món Nước"),
+(3,"Đồ Ăn Nhanh"),
+(4,"Cơm"),
+(5,"Trái Cây");
+
+# Tạo Bảng food
+
+CREATE TABLE food (
+  food_id  INT PRIMARY KEY AUTO_INCREMENT,
+  food_name VARCHAR(255) ,
+  image VARCHAR(255) ,
+  price FLOAT ,
+  descriptions VARCHAR(255) ,
+  type_id INT ,
+FOREIGN KEY (type_id) REFERENCES food_type(type_id)
+)
+
+INSERT INTO food VALUES
+(1, 'Pepsi', 'https://cdn.tgdd.vn/Products/Images/2443/76467/nuoc-ngot-co-ga-pepsi-cola-lon-330ml-2.jpg', 5000, 'Pepsi giải nhiệt cuộc sống nào', 1),
+(2, 'Heniken', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxLKFnsKKlQbXrh-6e0svJ_jc0wPSqWRQUA&usqp=CAU', 10000, 'Bia tươi', 1),
+(3, 'CocaCola', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd3JJN4k6SzcSdsLfjqVQ01bCQEGS6TqfSiA&usqp=CAU', 80000, 'Thấy cocacola là thấy tết', 1),
+(4, 'Hủ tiếu', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI4oW5i-4Qnlsga7ILv2WuwxAVPcRY9vi8lQ&usqp=CAU', 35000, 'hủ tiếu gõ bình dân', 2),
+(5, 'Bún bò', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyBZ0uD_Zu2j9kEsIjfUQcw7iGEPPL_r8-0A&usqp=CAU', 50000, 'bún bò huế', 2),
+(6, 'Khoai tây chiên', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCKENhvpDjjTf0coDhhieuI1dWjWXOfgnwLQ&usqp=CAU', 55000, 'Khoai tây chiên giòn', 3),
+(7, 'Cơm Chiên', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFwEJe3bZBMXImFzZDYc03XYKEbyrBwo7xqA&usqp=CAU', 24000, 'Cơm chiên hải sản', 4),
+(8, 'Cơm Gà', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNDD80XObP7Puv9S3XShyBAZYJxF3bH3quxg&usqp=CAU', 98000, 'Cơm gà xối mỡ', 4),
+(9, 'Nho Xanh', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVeXdieJHSR7f6nT3ejdAS6IHvp__vPd5UgQ&usqp=CAU', 56000, 'Nho mỹ xanh', 5),
+(10, 'Táo Đỏ', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCv9bNtzDGNOOgz8IRaziS4frx_Z0lEQNiAA&usqp=CAU', 22000, 'Táo đỏ hàn quốc', 5);
+
+
+#Tạo bảng người dùng
+
+CREATE TABLE users (
+  user_id  INT PRIMARY KEY AUTO_INCREMENT,
+  full_name VARCHAR(255) ,
+  email VARCHAR(255) ,
+  password VARCHAR(255)
+)
+
+INSERT INTO users VALUES
+(1, 'khoi', 'nguyendangkhoi0909@gmail.com', '09092000'),
+(2, 'John wick', 'john@gmail.com', '11111'),
+(3, 'Peter', 'pi@gmail.com', '22222'),
+(4, 'Kang', 'kang@gmail.com', '33333'),
+(5, 'luci', 'luci@gmail.com', '44444'),
+(6, 'naruto', 'naruto@gmail.com', '66666'),
+(7, 'sasuke', 'sasuke@gmail.com', '55555'),
+(8, 'men', 'men@gmail.com', '77777'),
+(9, 'women', 'women@gmail.com', '88888'),
+(10, 'nana', 'nana@gmail.com', '99999');
+
+
+# Tạo bảng restaurant
+
+CREATE TABLE restaurant (
+  res_id  INT PRIMARY KEY AUTO_INCREMENT,
+  res_name VARCHAR(255) ,
+  image VARCHAR(255) ,
+  descriptions VARCHAR(255)
+)
+
+INSERT INTO restaurant  VALUES
+(1, 'Hadilao', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfiBBF50_Ut723fQR4Nn9Tk7R6PkHYmB8AcA&usqp=CAU', 'đồ ăn ko ngon'),
+(2, 'Lotte', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW1DPgWXJnWq4KmyYCnKCoCvk6APK704r8HQ&usqp=CAU', 'kem tươi ngon'),
+(3, 'Gogi', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2FWmts-ghE_EAznppPtj4Y0WWnaFiG4Zd7g&usqp=CAU', 'Thịt nướng ngon');
+
+
+# Tạo bảng rate_res
+
+CREATE TABLE rate_res (
+  user_id INT  ,
+  res_id INT ,
+  amount INT ,
+  date_rate DATETIME ,
+FOREIGN KEY (user_id) REFERENCES users (user_id),
+FOREIGN KEY (res_id) REFERENCES restaurant (res_id)
+)
+
+INSERT INTO rate_res  VALUES
+(1, 2, 1, '2022-05-09 09:00:00'),
+(2, 3, 5, '2022-08-01 01:00:00'),
+(3, 1, 2, '2022-07-01 02:00:00'),
+(4, 3, 3, '2022-01-07 07:00:00'),
+(5, 2, 4, '2022-05-03 03:00:00'),
+(6, 3, 5, '2022-08-04 01:00:00'),
+(7, 1, 3, '2022-09-07 04:00:00'),
+(8, 3, 1, '2022-01-04 05:00:00'),
+(9, 3, 5, '2022-02-09 06:00:00'),
+(9, 1, 2, '2022-02-01 05:00:00');
+
+# Tạo bảng like_res
+
+CREATE TABLE like_res (
+  user_id INT  ,
+  res_id INT ,
+  date_like DATETIME ,
+FOREIGN KEY (user_id) REFERENCES users (user_id),
+FOREIGN KEY (res_id) REFERENCES restaurant (res_id)
+)
+
+
+INSERT INTO like_res  VALUES
+(1, 2, '2022-09-09 09:00:00'),
+(4, 3,  '2022-01-01 01:00:00'),
+(3, 3,  '2022-07-07 03:00:00'),
+(1, 2, '2022-03-07 07:00:00'),
+(8, 2,  '2022-05-03 03:00:00'),
+(1, 3,  '2022-04-04 02:00:00'),
+(7, 1,  '2022-06-07 04:00:00'),
+(6, 2, '2022-01-03 06:00:00'),
+(9, 1,  '2022-02-09 06:00:00'),
+(9, 1,  '2022-02-03 09:00:00');
+
+
+# Tạo bảng orders
+
+
+CREATE TABLE orders (
+  user_id INT  ,
+  food_id INT ,
+  amount INT ,
+  code VARCHAR(255),
+  arr_sub_id VARCHAR(255),
+
+FOREIGN KEY (user_id) REFERENCES users (user_id),
+FOREIGN KEY (food_id) REFERENCES food (food_id)
+)
+
+
+INSERT INTO orders  VALUES
+(1, 1, 3, '1111', '[1,2]'),
+(2, 7, 2, '2222', '[4,5]'),
+(3, 4, 1, '3333', '[1,2]'),
+(4, 4, 1, '4444', '[2,3]'),
+(8, 6, 5, '5555', '[4,5]'),
+(7, 2, 2, '6666', '[2,3]'),
+(5, 9, 4, '7777', '[1,3]'),
+(6, 10, 5,'8888', '[3,4]');
+
+
+# Tạo bảng sub_food
+
+CREATE TABLE sub_food (
+  sub_id  INT PRIMARY KEY AUTO_INCREMENT,
+  sub_name VARCHAR(255) ,
+  sub_price FLOAT ,
+  food_id INT ,
+FOREIGN KEY (food_id) REFERENCES food(food_id)
+)
+
+INSERT INTO sub_food  VALUES
+(1, 'Đá lạnh', 2000, 1),
+(2, 'Hành phi', 1500, 4),
+(3, 'Rau sống', 1600, 5),
+(4, 'Gà thêm',2400, 8),
+(5, 'Bò thêm',2200, 5),
+(6, 'Đá lạnh', 8500, 2),
+(7, 'tương ớt', 4300, 6),
+(8, 'tương ớt', 9800, 4),
+(9, 'Cơm thêm', 7400, 7);
+
+
+# Tìm 5 người likes nhà hàng nhiều nhất
+
+SELECT users.full_name FROM users 
+LEFT JOIN like_res
+ON users.user_id = like_res.user_id 
+ORDER BY like_res.date_like desc
+LIMIT 5;
+
+
+# Tìm 2 nhà hàng có lượt đánh giá nhiều nhất
+
+SELECT restaurant.res_name FROM restaurant
+LEFT JOIN rate_res
+ON restaurant.res_id = rate_res.res_id
+ORDER BY rate_res.amount desc
+LIMIT 2;
+
+
+# Tìm người đã đặt hàng nhiều nhất
+ 
+ SELECT users.full_name FROM users
+ LEFT JOIN orders 
+ ON users.user_id = orders.user_id
+ ORDER BY orders.amount desc
+ LIMIT 1
+
+
+# Tìm người dùng không hoạt động trong hệ thống
+
+SELECT users.full_name FROM users
+LEFT JOIN orders
+ON users.user_id = orders.user_id
+LEFT JOIN like_res
+ON users.user_id = like_res.user_id
+LEFT JOIN rate_res
+ON users.user_id = rate_res.user_id
+WHERE rate_res.user_id is null ;
+
+
+# Tính trung bình sub_food của 1 food
+
+SELECT * FROM food 
+LEFT JOIN sub_food
+ON food.food_id = sub_food.food_id
+GROUP BY sub_food.food_id 
+SELECT AVG(food_id) FROM sub_food;
+
+
+
+
+
