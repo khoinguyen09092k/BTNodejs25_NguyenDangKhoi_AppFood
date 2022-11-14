@@ -36,7 +36,7 @@ INSERT INTO food VALUES
 (7, 'Cơm Chiên', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFwEJe3bZBMXImFzZDYc03XYKEbyrBwo7xqA&usqp=CAU', 24000, 'Cơm chiên hải sản', 4),
 (8, 'Cơm Gà', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNDD80XObP7Puv9S3XShyBAZYJxF3bH3quxg&usqp=CAU', 98000, 'Cơm gà xối mỡ', 4),
 (9, 'Nho Xanh', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVeXdieJHSR7f6nT3ejdAS6IHvp__vPd5UgQ&usqp=CAU', 56000, 'Nho mỹ xanh', 5),
-(10, 'Táo Đỏ', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCv9bNtzDGNOOgz8IRaziS4frx_Z0lEQNiAA&usqp=CAU', 22000, 'Táo đỏ hàn quốc', 5);
+(10,'Táo Đỏ', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCv9bNtzDGNOOgz8IRaziS4frx_Z0lEQNiAA&usqp=CAU', 22000, 'Táo đỏ hàn quốc', 5);
 
 
 #Tạo bảng người dùng
@@ -212,11 +212,7 @@ WHERE rate_res.user_id is null ;
 
 # Tính trung bình sub_food của 1 food
 
-SELECT * FROM food 
-LEFT JOIN sub_food
-ON food.food_id = sub_food.food_id
-GROUP BY sub_food.food_id 
-SELECT AVG(food_id) FROM sub_food;
+SELECT (SELECT COUNT(*) FROM sub_food)/(SELECT COUNT(*) FROM food) AS avg_food
 
 
 
